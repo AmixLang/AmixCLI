@@ -6,7 +6,7 @@ import org.amix.Amix
 
 fun main(args: Array<String>) {
   val useVerticalRoot = parseUseVerticalRoot(args)
-  val filePaths = args.dropWhile { it != "-verticalroot" }.drop(2)
+  val filePaths = args.dropWhile { it != "--vertical-root" }.drop(2)
 
   if (filePaths.isEmpty()) {
     println("Error: No file paths provided.")
@@ -45,7 +45,7 @@ fun List<String>.toFileList(): List<File> {
 }
 
 fun parseUseVerticalRoot(args: Array<String>): Boolean {
-  val index = args.indexOf("-verticalroot")
+  val index = args.indexOf("--vertical-root")
   return if (index != -1 && index + 1 < args.size) args[index + 1].toBooleanStrictOrNull() ?: false
   else false
 }

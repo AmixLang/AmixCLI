@@ -1,0 +1,27 @@
+#!/bin/bash
+
+DIR="$PREFIX/bin"
+FILE="$DIR/amixc.jar"
+
+vertical_root=""
+files=()
+
+while (( "$#" )); do
+  case "$1" in
+    --vertical-root)
+      vertical_root="$2"
+      shift 2
+      ;;
+    *)
+      files+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if [ -z "$vertical_root" ]; then
+  echo "Error: --vertical-root argument is required."
+  exit 1
+fi
+
+java -jar "$FILE" --vertical-root "$vertical_root" "${files[@]}"
